@@ -1,13 +1,13 @@
   {
-    "name": "Chrome Assistant",
+    "name": "Personal Goals coach",
     "version": "0.1",
     "description": "Create a nagging assistant who checks up on you",
-    "permissions": ["activeTab", "declarativeContent", "storage"],
+    "permissions": ["activeTab", "declarativeContent", "storage", "notifications"],
     "background": {
-        "scripts": ["timer.js"],
+        "scripts": ["moment.js", "background.js"],
         "persistent": false
     },
-    "page_action": {
+    "browser_action": {
         "default_popup": "assistant.html",
         "default_icon": {
             "16": "images/get_started16.png",

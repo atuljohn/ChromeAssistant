@@ -1,18 +1,31 @@
 // Timer from https://medium.com/@abhi9bakshi/why-javascript-timer-is-unreliable-and-how-can-you-fix-it-9ff5e6d34ee0
+// Deprecated above.
+// Following from https://github.com/gt-webdev/tomato
 
+function init() {
+  addMessageListeners();
+  console.log("Added message listeners I think");
+  startMyTimer();
+  console.log("After startTimer");
+}
 
-let start = new Date();
-let intervalRef = null;
-let timer = document.getElementById('timer');
+function startMyTimer() {
+  console.log("Hello to myFunction");
+  chrome.runtime.sendMessage({ "command": "startTimer" },
+    function (response) {
+      console.log(response.message);
+    });  
+}
 
-intervalRef = setInterval(_ => {
-  let current = new Date();
-  let count = +current - +start;
-  
-  let ms = count % 1000;
-  let s = Math.floor((count /  1000)) % 60;
-  let m = Math.floor((count / 60000)) % 60;
+function addMessageListeners() {
+  chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+      if (request.command === "updateTime") {
+        var time = request.time;
+        document.getElementById("time").innerText = time;
+      }
+    });
+console.log("Added message listener for a command updateTime.");
+}
 
-
-  timer = m + ":" + s + ":" + ms;
-}, 10);
+document.addEventListener('DOMContentLoaded', init);

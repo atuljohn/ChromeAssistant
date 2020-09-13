@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
 
-<body>
-    <p id="timer">
-        00:00:00
-    </p>
+<head>
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
 
-    <div>
-        <p>Hey man, how's it going?</p>
-    </div>
-</body>
+<body>
+<div id="container">
+    <h2 id="time">0</h2>    
+</div>
+<p>Hey man, how's it going?</p>
+<button type="button">Start</button>
+<button type="button">Stop</button>
+<script type="text/javascript" src="moment.js"></script>
 <script src="timer.js"></script>
+<script src="background.js"></script>
+<script src="popup.js"></script>
+</body>
+
 </html>
